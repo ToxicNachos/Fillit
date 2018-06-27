@@ -18,17 +18,24 @@ int	main(int argc, char **argv)
 	int		x;
 	char	buf[MAX_FILLIT_FILE + CUSHION];
 
-	argc = 1;
+	if (argc != 1)
+	{
+		EXIT_MACRO;
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		write(1, "error\n", 6);
-		return (1);
+		EXIT_MACRO;
 	}
-	x = read(fd, buf, MAX_FILLIT_FILE + CUSHION);
+	if (!(x = read(fd, buf, MAX_FILLIT_FILE + CUSHION)))
+	{
+		EXIT_MACRO;
+	}
 	buf[x] = '\0';
 	if (x > MAX_FILLIT_FILE)
-		return (1);
+	{
+		EXIT_MACRO;
+	}
 	ft_split_pieces(buf);
 	close(fd);
 	return (0);

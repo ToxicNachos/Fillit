@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# define VAL_MACRO int i = 0, new_lines = 0, pieces = 0, dot = 0;
+# define VAL_MACRO int new_lines = 0, pieces = 0, dot = 0; int *tmp;
 # define SPLIT_PIECES char **boxes = NULL; int box = 0, s; SPLIT_PIECES2;
 # define SPLIT_PIECES2 char ***coords = NULL; int i = 0; BOX_COUNT; SIZE_MAP;
 # define BOX_COUNT int box_count = ft_piece_count(str); int q = -1;
@@ -34,6 +34,7 @@
 # define PIECE_MACRO2 int cx = 0, a = 0, cy;
 # define CURRENT_MACRO current[0] = x; current[1] = y; current[2] = size;
 # define EXIT_MACRO write(1, "error\n", 6); exit(-1);
+# define HELPER_MACRO tmp[0] = new_lines; tmp[1] = pieces; tmp[2] = dot;
 # define MAX_FILLIT_FILE 545
 # define LINE_SIZE 5
 # define CUSHION 10
