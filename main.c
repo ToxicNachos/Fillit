@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 	int		x;
 	char	buf[MAX_FILLIT_FILE + CUSHION];
 
-	if (argc != 1)
+	if (argc != 2)
 	{
-		EXIT_MACRO;
+		USAGE_MACRO;
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)

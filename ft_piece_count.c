@@ -14,10 +14,11 @@
 
 static int	*ft_helper(int new_lines, int pieces, int dot, char *str)
 {
-	int *tmp[3];
+	int *tmp;
 	int i;
 
 	i = 0;
+	tmp = (int *)malloc(sizeof(int) * 3);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
@@ -26,11 +27,11 @@ static int	*ft_helper(int new_lines, int pieces, int dot, char *str)
 			pieces++;
 		else if (str[i] == '.')
 			dot++;
-		else
-		{
-			EXIT_MACRO;
-		}
 		i++;
+	}
+	if (str[i - 1] == '\n')
+	{
+		EXIT_MACRO;
 	}
 	tmp[0] = new_lines;
 	tmp[1] = pieces;
@@ -41,15 +42,19 @@ static int	*ft_helper(int new_lines, int pieces, int dot, char *str)
 int			ft_piece_count(char *str)
 {
 	VAL_MACRO;
-	if (!*str || (str[0] != '.' || str[0] != '#'))
+	if (!*str)
+	{
+		EXIT_MACRO;
+	}
+	if (str[0] != '.' && str[0] != '#')
 	{
 		EXIT_MACRO;
 	}
 	tmp = ft_helper(new_lines, pieces, dot, str);
 	HELPER_MACRO;
-	if (new_lines == 4 && pieces == 4 && dot == 12)
+	if (new_lines == 3 && pieces == 4 && dot == 12)
 		return (1);
-	else if (pieces * 3 == dot)
+	else if (pieces * 3 == dot && pieces != 4)
 		pieces = pieces / 4;
 	else
 	{

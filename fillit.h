@@ -34,7 +34,8 @@
 # define PIECE_MACRO2 int cx = 0, a = 0, cy;
 # define CURRENT_MACRO current[0] = x; current[1] = y; current[2] = size;
 # define EXIT_MACRO write(1, "error\n", 6); exit(-1);
-# define HELPER_MACRO tmp[0] = new_lines; tmp[1] = pieces; tmp[2] = dot;
+# define USAGE_MACRO write(1, "usage\\invalid argument\n", 23); exit(-1);
+# define HELPER_MACRO new_lines = tmp[0]; pieces = tmp[1]; dot = tmp[2];
 # define MAX_FILLIT_FILE 545
 # define LINE_SIZE 5
 # define CUSHION 10

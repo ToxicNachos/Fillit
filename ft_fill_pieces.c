@@ -47,9 +47,10 @@ static char	**ft_box_malloc(char **boxes, int box_count)
 	return (boxes);
 }
 
-static char	***ft_twotothree(char **boxes)
+static char	***ft_twotothree(char **boxes, int box_count)
 {
 	int d;
+	box_count = 0;
 
 	COORDS_MACRO;
 	coords = ft_malloc_coords(boxes);
@@ -60,14 +61,13 @@ static char	***ft_twotothree(char **boxes)
 		d = 0;
 		while (boxes[a][b] != '\0')
 		{
-			coords[a][c][d++] = boxes[a][b];
-			if ((b + 1) % 5 == 0)
+			coords[a][c][d++] = boxes[a][b++];
+			if (boxes[a][b] == '\n' || boxes[a][b] == '\0')
 			{
 				coords[a][c][d] = '\0';
 				d = 0;
-				c++;
+				c++;			
 			}
-			b++;
 		}
 		coords[a][c] = NULL;
 		a++;
@@ -99,8 +99,11 @@ char		**ft_split_pieces(char *str)
 		{
 			EXIT_MACRO;
 		}
-	coords = ft_twotothree(boxes);
+	coords = ft_twotothree(boxes, box_count);
 	MOVE_LEFT;
+	for (int w = 0; coords[w]; w++)
+		ft_print_map(coords[w]);
+	write (1, "\n\n", 2);
 	ft_placer(coords, map_size);
 	return (boxes);
 }
