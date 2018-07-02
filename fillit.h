@@ -5,52 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pkumar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 16:24:19 by pkumar            #+#    #+#             */
-/*   Updated: 2018/06/10 19:00:54 by pkumar           ###   ########.fr       */
+/*   Created: 2018/07/01 20:57:21 by pkumar            #+#    #+#             */
+/*   Updated: 2018/07/01 20:57:23 by pkumar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# include <string.h>
 # include <unistd.h>
-# include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# define VAL_MACRO int new_lines = 0, pieces = 0, dot = 0; int *tmp;
-# define SPLIT_PIECES char **boxes = NULL; int box = 0, s; SPLIT_PIECES2;
-# define SPLIT_PIECES2 char ***coords = NULL; int i = 0; BOX_COUNT; SIZE_MAP;
-# define BOX_COUNT int box_count = ft_piece_count(str); int q = -1;
-# define SIZE_MAP int map_size = ft_sqrt_up(box_count * 4); BOX_MALLOC;
-# define BOX_MALLOC boxes = ft_box_malloc(boxes, box_count);
-# define MOVE_LEFT while (++q < box_count) coords[q] = ft_move_left(coords[q]);
-# define FUCK_IT while (s < BOX_SIZE - 1) boxes[box][s++] = *str++;
+# include <stdlib.h>
+# include <string.h>
+
+# define BUFF_SIZE 1024
+# define BOX_SIZE 21
+# define MAX_FILLIT_SIZE 545
+# define VALID_CHAR(x) (x == '.' || x == '#' ? 0 : 1)
+# define VAL_MACRO int new_lines = 0, pieces = 0, dot = 0, i = 0;
 # define MOVE_X_Y int x; int y;
-# define COORDS_MACRO int a = 0; int b; int c; char	***coords = NULL;
 # define MAP_MACRO char **map = NULL; int x = 0; int y; int i = -1;
-# define CRDS_MACRO int **crds = NULL; int x = -1; int y = 0;
+# define PIECE_MACRO2 int cx = 0, a = 0, cy;
 # define PIECE_MACRO int **crds = NULL; int x = -1, y; CHAR_MACRO;
 # define CHAR_MACRO char l = 'A' + box_num; int current[3];
-# define PIECE_MACRO2 int cx = 0, a = 0, cy;
 # define CURRENT_MACRO current[0] = x; current[1] = y; current[2] = size;
-# define EXIT_MACRO write(1, "error\n", 6); exit(-1);
-# define USAGE_MACRO write(1, "usage\\invalid argument\n", 23); exit(-1);
-# define HELPER_MACRO new_lines = tmp[0]; pieces = tmp[1]; dot = tmp[2];
-# define MAX_FILLIT_FILE 545
-# define LINE_SIZE 5
-# define CUSHION 10
-# define BOX_SIZE 21
+# define MV_LEFT while (++q < piece_count) coords[q] = ft_move_left(coords[q]);
+# define CRDS_MACRO int **crds = NULL; int x = -1; int y = 0;
+# define FORMAT_MACRO int w = -1, piece_count = ft_piece_count(str); FORMAT_2
+# define FORMAT_2 char ***coords = ft_malloc_coords(piece_count); int q = -1;
+# define PARSE_MACRO int piecenum = 0, i = 0, row, c;
+# define PARSE_CHECKER PC1; piecenum++;
+# define PC1 if (str[i] == '\n' && piecenum != piece_count - 1) i++; PC2;
+# define PC2 else if (piecenum == piece_count - 1) break ; else ft_exit(1);
 
-int			ft_validate_piece(char *str);
-int			ft_piece_count(char *str);
-char		**ft_split_pieces(char *str);
-char		**ft_make_map(int p);
-char		**ft_remake_map(char **map, int p);
-int			**ft_getpiece(char **box);
-void		ft_placer(char ***coords, int size);
+void		ft_placer(char ***coords, int piece_count);
+int			ft_validate_piece(char **str);
 void		ft_print_map(char **map);
+int			**ft_getpiece(char **box);
 void		ft_strdel(char **as);
+char		**ft_make_map(int p);
 char		**ft_move_left(char **box);
+void		ft_exit(int i);
 int			ft_sqrt_up(int n);
 
 #endif

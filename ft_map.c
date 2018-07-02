@@ -12,6 +12,35 @@
 
 #include "fillit.h"
 
+int		ft_sqrt_up(int n)
+{
+	int i;
+
+	i = 1;
+	if (n == 0)
+		return (0);
+	while (i * i < n)
+		i++;
+	if (n % i == 0)
+		return (i);
+	else
+		return ((n + i - 1) / i);
+}
+
+void	ft_exit(int i)
+{
+	if (i == 0)
+	{
+		write(1, "usage\\invalid argument\n", 23);
+		exit(0);
+	}
+	else
+	{
+		write(1, "error\n", 6);
+		exit(0);
+	}
+}
+
 void	ft_print_map(char **map)
 {
 	int i;

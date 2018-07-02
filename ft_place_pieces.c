@@ -82,13 +82,15 @@ static int		ft_place(char ***coords, char **map, int box_num, int size)
 	return (0);
 }
 
-void			ft_placer(char ***coords, int size)
+void			ft_placer(char ***coords, int piece_count)
 {
 	int		b;
 	int		i;
 	char	**map;
+	int		size;
 
 	b = 0;
+	size = ft_sqrt_up(piece_count);
 	while (!b)
 	{
 		map = ft_make_map(size);

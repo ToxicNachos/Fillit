@@ -19,7 +19,7 @@ static int	ft_check_left(char **box)
 
 	x = 0;
 	n = 0;
-	while (box[x])
+	while (x < 4)
 	{
 		if (box[x][0] == '.')
 			n++;
