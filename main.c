@@ -29,7 +29,8 @@ static int	ft_piece_count(char *str)
 	}
 	if (new_lines == 4 && pieces == 4 && dot == 12)
 		return (1);
-	else if (pieces * 3 == dot && pieces != 4)
+	else if (pieces * 3 == dot && pieces != 4 &&
+		new_lines == pieces + (pieces / 4) - 1)
 		pieces = pieces / 4;
 	else
 		ft_exit(1);
@@ -117,7 +118,7 @@ int			main(int ac, char **av)
 	if (ret > MAX_FILLIT_SIZE)
 		ft_exit(1);
 	buf[ret] = '\0';
-	if (ret < BOX_SIZE || buf[ret - 1] != '\n' || VALID_CHAR(buf[ret - 2]))
+	if (ret < BOX_SIZE - 1 || buf[ret - 1] != '\n' || VALID_CHAR(buf[ret - 2]))
 		ft_exit(1);
 	format_tetriminos(buf);
 	close(fd);
