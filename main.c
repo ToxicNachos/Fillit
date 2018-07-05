@@ -6,7 +6,7 @@
 /*   By: pkumar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 22:44:22 by pkumar            #+#    #+#             */
-/*   Updated: 2018/07/01 22:44:23 by pkumar           ###   ########.fr       */
+/*   Updated: 2018/07/05 16:16:52 by pkumar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int			main(int ac, char **av)
 	if (ac != 2)
 		ft_exit(0);
 	if ((fd = open(filename, O_RDONLY)) < 0)
-		ft_exit(1);
+		ft_exit(0);
 	if (!(ret = read(fd, buf, BUFF_SIZE)))
 		ft_exit(1);
 	if (ret > MAX_FILLIT_SIZE)
